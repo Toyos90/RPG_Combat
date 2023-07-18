@@ -91,7 +91,7 @@ public class CharacterTest {
         assertEquals(700, character.getHealth());
     }
     @Test
-    public void Melee_fighters_have_an_range_of_2_meters(){
+    public void Melee_fighters_have_an_range_of_2_meters() {
         Character melee = new Character();
         melee.attackMelee(melee, 3.5, 100);
         assertEquals(1000, melee.getHealth());

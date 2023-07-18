@@ -6,14 +6,10 @@ public class Character {
     private int health = 1000;
     private int level = 1;
     private boolean alive = true;
-    private Set<String> factions = new HashSet<>();
+    private final Set<String>factions = new HashSet<>();
 
     public boolean isAlive() {
         return alive;
-    }
-
-    public void setAlive(boolean alive) {
-        this.alive = alive;
     }
 
     public int getHealth() {
@@ -32,28 +28,26 @@ public class Character {
         this.level = level;
     }
 
-    public int damage(int damage) {
+    public void damage(int damage) {
         this.health -= damage;
         if (health <= 0) {
             this.alive = false;
             this.health = 0;
         }
-        return health;
     }
 
-    public int heal(int heal) {
+    public void heal(int heal) {
         if (health > 0 && health < 1000) {
             this.health += heal;
             if (health >= 1000) {
                 setHealth(1000);
             }
         }
-        return health;
     }
 
-    public int inflictDamage(Character target, int damage) {
+    public void inflictDamage(Character target, int damage) {
         if (target == this || isAlly(target)) {
-            return 0;
+            return;
         }
 
         target.health -= damage;
@@ -61,14 +55,12 @@ public class Character {
             target.alive = false;
         }
 
-        return target.health;
     }
 
-    public int autoHeal(Character target, int heal) {
+    public void autoHeal(Character target, int heal) {
         if (target == this || isAlly(target)) {
             target.heal(heal);
         }
-        return target.health;
     }
 
     public void calculateDamage(Character target, Character attacker, int damage) {
